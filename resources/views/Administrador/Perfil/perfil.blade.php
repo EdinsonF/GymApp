@@ -97,9 +97,9 @@
 
                                       <img class="profile-user-img img-responsive img-circle" id="fotografia" src="{{ url('images/logoGym.jpg') }}" alt="User profile picture">
 
-                                      <form  id="f_subir_imagen" name="f_subir_imagen" method="post"  action="subir_imagen_usuario" class="formarchivo" enctype="multipart/form-data" >                
+                                      <form  id="f_subir_imagen" name="f_subir_imagen" method="post"  action="subir_imagen_persona" class="formarchivo" enctype="multipart/form-data" >                
                         
-                                          <input type="hidden" name="id_usuario_foto" value="1"> 
+                                          <input type="" name="id_usuario_foto" value="1"> 
                                           <input type="hidden" name="_token" id="token"  value="<?= csrf_token(); ?>"> 
 
                                           <div class="box-body">
@@ -111,7 +111,7 @@
                                               </div>
                                            
                                               <div class="box-footer" align="center">
-                                                    <button type="submit" class="btn btn-primary"><input name="imagen" id="archivo" type="file"   class="archivo form-control"  required  /></button>
+                                                    <button type="submit" class="btn btn-primary"><input name="foto" id="archivo" type="file"   class="archivo form-control"  required  /></button>
                                               </div>
                                           </div>
 

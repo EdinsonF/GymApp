@@ -12,8 +12,18 @@ class tipo_usuarioTableSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_usuario')->insert([
+            'tipo_usuario' => 'SUPER ADMINISTRADOR',
+            
+        ]);
+        DB::table('tipo_usuario')->insert([
             'tipo_usuario' => 'ADMINISTRADOR',
             
         ]);
+        DB::table('tipo_usuario')->insert([
+            'tipo_usuario' => 'ATLETA',
+            
+        ]);
+        
+            
     }
 }

@@ -71,37 +71,56 @@
                         </li>
                     
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Usuario<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Personas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{url('usuario/create')}}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    <a href="{{url('')}}"><i class='fa fa-user'></i> Atletas</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('usuario/list')}}"><i class='fa fa-list-ol fa-fw'></i> Usuarios</a>
+                                    <a href="{{url('')}}"><i class='fa fa-user'></i> Profesores</a>
                                 </li>
                             </ul>
                         </li>
                     
                         <li>
-                            <a href="#"><i class="fa fa-film fa-fw"></i> Pelicula<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-calendar-o"></i> Calendario<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{url('movie/create')}}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    <a href="{{url('')}}"><i class='fa fa-calendar'></i> Ver</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('movie')}}"><i class='fa fa-list-ol fa-fw'></i> Peliculas</a>
+                                    <a href="{{url('')}}"><i class='fa fa-calendar'></i> Eventos</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i> Genero<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-globe"></i> Gestionar Ubicación<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{url('genero/create')}}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> Estado</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('genero/list')}}"><i class='fa fa-list-ol fa-fw'></i> Generos</a>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> Municipio</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> Parroquia</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="#"><i class="fa fa-money"></i> Pagos y Renovación<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> ...</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> ...</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('')}}"><i class='fa fa-location-arrow'></i> ...</a>
                                 </li>
                             </ul>
                         </li>

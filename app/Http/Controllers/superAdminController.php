@@ -5,10 +5,13 @@ namespace Gym\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Gym\Http\Requests;
-use Gym\Persona;
-use Illuminate\Support\Facades\Validator;
+use Gym\Http\Requests\StoresuperadminRequest;
 
-class personaController extends Controller
+use Gym\User;
+use Gym\Persona;
+use Session;
+
+class superAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +20,7 @@ class personaController extends Controller
      */
     public function index()
     {
-        //
+        return view('Inicio.admin');
     }
 
     /**
@@ -36,9 +39,25 @@ class personaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoresuperadminRequest $request)
     {
-        //
+        $id_persona= Persona::insertGetId([
+            'cedula'        =>$request['cedula'],
+            'nombres'       =>$request['nombres'],
+            'telefono'      =>$request['telefono'],
+            
+            ]);
+            User::create([
+                'email'           =>$request['email'],
+                'password'        =>$request['password'],
+                'estatus'         =>'ACTIVO',
+                'id_persona'      =>$id_persona,
+                'id_tipo_usuario' =>1,
+                
+            ]);  
+            
+            Session::flash('mensaje','Usuario Registrado Exitosamente!');
+            return redirect('/login');
     }
 
     /**
@@ -75,40 +94,12 @@ class personaController extends Controller
         //
     }
 
-    public function actualizarFoto(Request $request)
-    {
-
-
-            $id=$request->input('id_usuario_foto');
-            $archivo = $request->file('foto');
-            $input  = array('image' => $archivo) ;
-            $reglas = array('image' => 'required|image|mimes:jpeg,jpg,bmp,png,gif|max:2000');
-            $validacion = Validator::make($input,  $reglas);
-            if ($validacion->fails())
-            {
-              return response()->json([
-                    "mensaje"=>"Error de Imagen"
-                    ]);
-            }
-
-            // $nombre_original=$archivo->getClientOriginalName();
-            // $extension=$archivo->getClientOriginalExtension();
-            // $nuevo_nombre="userimagen-".$id.".".$extension;
-
-                
-
-                $imagen=Persona::find($id);
-                $imagen->fill($request->all());
-                $imagen->save();
-                //return var_dump($result);
-                $result=Persona::getFoto($id);
-                return response()->json(
-                    $result
-                    );
-   
-    }
-
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         //

@@ -48,7 +48,7 @@ $("#archivo").change(function(event) {
         var nombreform=$(".formarchivo").attr("id");
         var archivo=$("#archivo").val();
         
-        if(nombreform=="f_subir_imagen" ){ var miurl="http://localhost:8000/subir_imagen_usuario";  var divresul="notificacion_resul_fci"}
+        if(nombreform=="f_subir_imagen" ){ var miurl="http://localhost:8000/subir_imagen_persona";  var divresul="notificacion_resul_fci"}
         //información del formulario
         var formData = new FormData($("#"+nombreform+"")[0]);
 //hasta aqui.
@@ -72,7 +72,7 @@ $("#archivo").change(function(event) {
             success: function(data){
               
               $('#fotografia').removeAttr('src');
-              $('#fotografia').attr('src',"http://localhost:8000/images_perfil/"+data+"");               
+              $('#fotografia').attr('src',"http://localhost:8000/images_persona/"+data+"");               
             },
             //si ha ocurrido un error
             error: function(data){

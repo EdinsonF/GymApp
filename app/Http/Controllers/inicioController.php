@@ -5,6 +5,7 @@ namespace Gym\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Gym\Http\Requests;
+
 use Gym\User;
 use Gym\Persona;
 use Gym\Gimnasio;
@@ -28,13 +29,10 @@ class inicioController extends Controller
         return view('Inicio.gimnasiosList');
     }
 
-
-
-    public function create()
+    public function contact()
     {
-        //
+        return view('Inicio.contacto');
     }
-
 
 
     /**
@@ -45,42 +43,7 @@ class inicioController extends Controller
      */
     public function store(Request $request)
     {
-       $id_persona= Persona::insertGetId([
-            'cedula'        =>$request['cedula'],
-            'nombres'       =>$request['nombres'],
-            'telefono'      =>$request['telefono'],
-            
-            ]);
-        
-       
-
-        User::create([
-            'email'           =>$request['email'],
-            'password'        =>$request['password'],
-            'estatus'         =>'ACTIVO',
-            'id_persona'      =>$id_persona,
-            'id_tipo_usuario' =>1,
-            'estatus'         =>'ACTIVO',
-            
-            ]);
-        $id_usuario=User::all()->last()->id;
-        
-        $id_gym=Gimnasio::insertGetId([
-            'nombre_gimnasio' =>$request['nombre_gym'],
-            'estatus'         =>'ACTIVO',
-            'direccion'        =>$request['direccion'],
-
-            ]);
-        inter_user_gym::create([
-            'id_usuario'    =>$id_usuario,
-            'id_gimnasio'   =>$id_gym,
-            'estatus'        =>'ACTIVO',
-
-            ]);
-
-
-        Session::flash('mensaje','Usuario Registrado Exitosamente!');
-        return redirect('/login');
+        //
     }
 
     /**

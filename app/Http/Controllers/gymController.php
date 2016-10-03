@@ -5,11 +5,17 @@ namespace Gym\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Gym\Http\Requests;
-use Gym\Gimnasio;
-use Storage;
-use Illuminate\Support\Facades\Validator;
 
-class gymController extends Controller
+use Gym\Http\Requests\IniciogymRequest;
+
+use Gym\User;
+use Gym\Persona;
+use Gym\Gimnasio;
+use Gym\inter_user_gym;
+use Session;
+
+
+class GymController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,6 +48,50 @@ class gymController extends Controller
         //
     }
 
+    public function guardarGym(IniciogymRequest $requestGym)
+    {
+        if(isset($requestGym['gym_Btn'])){
+            
+            $id_persona= Persona::insertGetId([
+            
+            'nombres'       =>$requestGym['nombres_gym_persona'],
+            
+            ]);
+        
+            User::create([
+                'email'           =>$requestGym['email_gym'],
+                'password'        =>$requestGym['password_gym'],
+                'estatus'         =>'ACTIVO',
+                'id_persona'      =>$id_persona,
+                'id_tipo_usuario' =>2,
+                
+                
+            ]);
+
+            $id_usuario=User::all()->last()->id;
+            
+            $id_gym=Gimnasio::insertGetId([
+                'nombre_gimnasio' =>$requestGym['nombre_gym'],
+                'estatus'         =>'ACTIVO',
+                'direccion'        =>$requestGym['direccion_gym'],
+                
+                ]);
+            inter_user_gym::create([
+                'id_usuario'    =>$id_usuario,
+                'id_gimnasio'   =>$id_gym,
+                'estatus'        =>'ACTIVO',
+
+                ]); 
+            Session::flash('mensaje','Usuario Registrado Exitosamente!');
+            return redirect('/login'); 
+
+        }else{
+
+        }
+    }
+
+
+
     /**
      * Display the specified resource.
      *
@@ -61,7 +111,7 @@ class gymController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -73,46 +123,10 @@ class gymController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-
-
+        //
     }
 
     
-    public function actualizarFoto(Request $request)
-    {
-
-
-            $id=$request->input('id_usuario_foto');
-            $archivo = $request->file('imagen');
-            $input  = array('image' => $archivo) ;
-            $reglas = array('image' => 'required|image|mimes:jpeg,jpg,bmp,png,gif|max:2000');
-            $validacion = Validator::make($input,  $reglas);
-            if ($validacion->fails())
-            {
-              return response()->json([
-                    "mensaje"=>"Error de Imagen"
-                    ]);
-            }
-
-            // $nombre_original=$archivo->getClientOriginalName();
-            // $extension=$archivo->getClientOriginalExtension();
-            // $nuevo_nombre="userimagen-".$id.".".$extension;
-
-          
-
-                 $imagen=Gimnasio::find($id);
-                $imagen->fill($request->all());
-                $imagen->save();
-                //return var_dump($result);
-                $result=Gimnasio::getImagen($id);
-                return response()->json(
-                    $result
-                    );
-   
-    }
-
     /**
      * Remove the specified resource from storage.
      *

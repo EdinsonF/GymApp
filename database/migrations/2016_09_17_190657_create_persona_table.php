@@ -11,13 +11,13 @@ class CreatePersonaTable extends Migration
      *
      * @return void
      */
-    public function up()
+   public function up()
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cedula');
+            $table->string('cedula')->nullable();;
             $table->string('nombres');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();;
             $table->timestamps();
         });
     }

@@ -5,32 +5,35 @@
 		@include('alerts.successForm')
 		
 		<div class="contact-content">
-			<div class="top-header span_top">
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="" /></a>
-					<p>Movie Theater</p>
-				</div>
+			<div class="top-header">
+				<div class="login-logo">					
+    				<b>Contacto</b>
+    				
+  				</div>
 				
 				<div class="clearfix"></div>
 			</div>
 		</div>
 			<!---contact-->
 		<div class="main-contact">
-			 <h3 class="head">Contactanos</h3>
-			 <p>Estamos aqui para ayudarte</p>
-			 <div class="contact-form">
-				 {!! Form::open(['route'=>'mail.store', 'method'=>'POST']) !!}
-					 <div class="col-md-6 contact-left">
-						 {!! Form::text('name', null,['placeholder'=>'Nombre']) !!}
-						  {!! Form::text('email', null,['placeholder'=>'Email']) !!}
-					  </div>
-					  <div class="col-md-6 contact-right">
-						 {!! Form::textarea('mensaje', null,['placeholder'=>'Mensaje']) !!}
-						 {!! Form::submit('Enviar') !!}
-					 </div>
-					 <div class="clearfix"></div>
-				 {!! Form::close() !!}
-		     </div>
+				
+			<div class="clearfix"></div>
+			<div class="contact-form">
+ 				<form>
+	 				<div class="col-md-6 contact-left">
+		  				<input type="text" placeholder="Nombre y Apellido" required/>
+		  				<input type="text" placeholder="E-mail" required/>
+		  				<input type="text" placeholder="Telefono" required/>
+	  				</div>
+	  				<div class="col-md-6 contact-right">
+		 				<textarea placeholder="Mensaje"></textarea>
+		 			</div>
+	 				<div class="clearfix"></div>
+	 				<div class="col-xs-4">
+            			<input type="submit" class="btn btn-primary btn-block btn-flat" value="SEND"/>
+        			</div>
+ 				</form>
+			</div>
 		</div>
 
-@stop
+@endsection

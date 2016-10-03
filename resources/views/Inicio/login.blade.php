@@ -4,6 +4,7 @@
 @section('content')
 
 	@include('alerts.errorForm')
+	@include('alerts.successForm')
 	
 	
 		<div class="header-info">
@@ -14,7 +15,7 @@
 		    	<form   method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 	                  <div class="form-group has-feedback">
-	                    <input type="email"   class="form-control" name="email" placeholder="Correo" value="edinson@gmail.com" autocomplete="off">
+	                    <input type="email"   class="form-control" name="email" placeholder="Correo" value="figueroa@gmail.com" autocomplete="off">
 	                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 	                  </div>
 
@@ -40,7 +41,7 @@
 	            </form>
 		
 				<a href="#">Olvidó su contraseña?</a><br>
-	            <a href="/" class="text-center">Crear mi gimnasio...</a>
+	            <a href="/" class="text-center">Registrarme...</a>
 
 		</div>
 		

@@ -4,10 +4,7 @@
 <title>Gym.App</title>
 
 <link href="{{ url('css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
 <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
-<!-- Custom Theme files -->
-
 <link href="{{ url('css/AdminLTE.min.css')}}" rel="stylesheet">
 <link href="{{ url('css/AdminLTE.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="plugins/iCheck/square/blue.css">

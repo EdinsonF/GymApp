@@ -5,8 +5,10 @@ namespace Gym\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Gym\Http\Requests;
+use Gym\User;
+use Auth;
 
-class adminController extends Controller
+class userController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class adminController extends Controller
      */
     public function index()
     {
-        return view('Administrador.index');
+        //
     }
 
     /**
@@ -25,7 +27,7 @@ class adminController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -47,7 +49,7 @@ class adminController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -58,7 +60,7 @@ class adminController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -70,7 +72,13 @@ class adminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::find(Auth::user()->id_persona);
+        $user->fill($request->all());
+        $user->save();
+
+        return response()->json(
+            ["mensaje"=>"listo"]
+            );
     }
 
     /**

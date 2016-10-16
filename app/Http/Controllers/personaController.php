@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use Gym\Http\Requests;
 use Gym\Persona;
+use Gym\User;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class personaController extends Controller
 {
@@ -17,7 +19,7 @@ class personaController extends Controller
      */
     public function index()
     {
-        //
+        return view('Administrador.Perfil.perfil');
     }
 
     /**
@@ -48,8 +50,12 @@ class personaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {        
+        $datos=Persona::ConsultarAll(Auth::user()->id_persona);
+        
+         return response()->json(
+            ['datos' =>$datos]
+            );
     }
 
     /**
@@ -60,7 +66,7 @@ class personaController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -72,14 +78,24 @@ class personaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $persona=Persona::find(Auth::user()->id_persona);
+        $persona->fill($request->all());
+        $persona->save();
+        try{
+            // lógica para hacer la inserción
+            return response()->json(array('status' => 'success'));
+        }catch(Exception $e){
+            return response()->json(array('status' => 'error')); //$e->getMessage() sólo para versión en desarrollo, puede cambiarse después por algo como 'Un error ha ocurrido'
+        }
     }
+
+
+    
 
     public function actualizarFoto(Request $request)
     {
 
-
-            $id=$request->input('id_usuario_foto');
+            $id=Auth::user()->id_persona;
             $archivo = $request->file('foto');
             $input  = array('image' => $archivo) ;
             $reglas = array('image' => 'required|image|mimes:jpeg,jpg,bmp,png,gif|max:2000');

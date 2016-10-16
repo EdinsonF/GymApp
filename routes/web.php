@@ -12,6 +12,9 @@
 */
 
 Route::resource('login','loginController');
+
+
+
 Route::resource('admin','adminController');
 Route::get('/logout', 'Auth\LoginController@logout');
 
@@ -20,6 +23,7 @@ Route::get('contacto', 'inicioController@contact');
 Route::resource('/','inicioController');
 
 Route::post('subir_imagen_persona','personaController@actualizarFoto');
+
 Route::resource('persona', 'personaController');
 
 Route::post('registro/gym','gymController@guardarGym');
@@ -29,6 +33,9 @@ Route::post('registro/atleta','atletaController@guardarAtleta');
 
 Route::post('registro/super_admin','superAdminController@store');
 Route::resource('sup&er','superAdminController');
+
+
+Route::resource('user','userController');
 
 
 

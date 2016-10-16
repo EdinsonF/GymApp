@@ -2358,6 +2358,8 @@ a:focus {
  * ----------------
  */
 .alert {
+  /*position: absolute;
+  width: 100%;*/
   border-radius: 3px;
 }
 .alert h4 {
@@ -3293,7 +3295,7 @@ table.text-center th {
  */
 .profile-user-img {
   margin: 0 auto;
-  width: 100px;
+  width: 150px;
   padding: 3px;
   border: 3px solid #d2d6de;
 }

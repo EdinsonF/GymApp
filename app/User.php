@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,6 +38,17 @@ class User extends Authenticatable
         return $registros;
     }
 
+    public function getFotoAttribute(){
+
+        $registros = \DB::table('users')->join('persona','persona.id','=','users.id_persona' )->where( 'users.email',$this->email)
+                                  ->select('persona.foto')
+                                  ->value('foto');
+
+        return $registros;
+    }
+
+
+
     public function setPasswordAttribute($valor)
     {
         if(!empty($valor)){
@@ -46,6 +58,7 @@ class User extends Authenticatable
         }
 
     }
+
 
 
 

@@ -13,6 +13,7 @@ use Gym\Persona;
 use Gym\Gimnasio;
 use Gym\inter_user_gym;
 use Session;
+use Auth;
 
 
 class GymController extends Controller
@@ -100,7 +101,11 @@ class GymController extends Controller
      */
     public function show($id)
     {
-        //
+        $datos=Gimnasio::ConsultarAll(Auth::user()->id);
+
+        return response()->json(
+            ['datos'=>$datos]
+            );
     }
 
     /**
@@ -123,7 +128,17 @@ class GymController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id_gym=Gimnasio::ConsultaID(Auth::user()->id);
+        $datos=Gimnasio::find($id_gym);
+        $datos->fill($request->all());
+        $datos->save();
+
+        try{
+            // lógica para hacer la inserción
+            return response()->json(array('status' => 'success'));
+        }catch(Exception $e){
+            return response()->json(array('status' => 'error')); //$e->getMessage() sólo para versión en desarrollo, puede cambiarse después por algo como 'Un error ha ocurrido'
+        }
     }
 
     

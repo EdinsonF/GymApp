@@ -36,4 +36,28 @@ class Gimnasio extends Model
         return $registros;
     }
 
+    public static function ConsultarAll($id)
+    {
+      $registros=\DB::table('inter_user_gym')->join('users','inter_user_gym.id_usuario','=','users.id' )
+                                            ->join('gimnasio','inter_user_gym.id_gimnasio','=','gimnasio.id')
+                                            ->where( 'users.id',$id)
+                                            ->select('gimnasio.*')
+                                            ->get();
+      return $registros;
+
+
+    }
+
+    public static function ConsultaID($id)
+    {
+      $registros=\DB::table('inter_user_gym')->join('users','inter_user_gym.id_usuario','=','users.id' )
+                                            ->join('gimnasio','inter_user_gym.id_gimnasio','=','gimnasio.id')
+                                            ->where( 'users.id',$id)
+                                            ->select('gimnasio.id')
+                                            ->value('id');
+      return $registros;
+
+
+    }
+
 }

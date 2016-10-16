@@ -16,7 +16,7 @@ class Persona extends Model
 
 
 
-public function setFotoAttribute($path){
+    public function setFotoAttribute($path){
      	
         if(!empty($path))
         {
@@ -30,7 +30,7 @@ public function setFotoAttribute($path){
         }
 }
 
- public static function getFoto($id){
+    public static function getFoto($id){
         $registros = \DB::table('persona')->where( 'id',$id)
                                   ->select('foto')
                                   ->value('foto');
@@ -38,6 +38,15 @@ public function setFotoAttribute($path){
         return $registros;
     }
 
+
+    public static function ConsultarAll($id)
+    {
+        $registros = \DB::table('persona')->where( 'id',$id)
+                                  ->select('persona.*')
+                                  ->get();
+
+        return $registros;
+    }
 
 
 

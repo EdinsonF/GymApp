@@ -14,7 +14,8 @@
     <link href="{{ url('css/metisMenu.min.css')}}" rel="stylesheet">
     <link href="{{ url('css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{ url('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    
+    <link href="{{  url('css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css" />
     
     
 </head>
@@ -36,23 +37,46 @@
             </div>
            
 
-            <ul class="nav navbar-top-links navbar-right">
-                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        @if(isset(Auth::user()->fullName))
-                            {!! Auth::user()->fullName !!}
-                        @endif
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ajustes</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown user user-menu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    @if(isset(Auth::user()->foto))
+                      <img class="user-image fotografia"  src="images_persona/{{Auth::user()->foto}}"  alt="User Image">
+                    @else 
+                      <img class="user-image fotografia"  src="images/logoGym.jpg"  alt="User Image">
+                    @endif 
+                     <i class="fa fa-gears"></i>
+                </a>
+                    <ul class="dropdown-menu">
+                      <!-- User image -->
+                      <li class="user-header">
+                           @if(isset(Auth::user()->fullName))
+                                @if(isset(Auth::user()->foto))
+                                  <img class="img-circle fotografia"  src="images_persona/{{Auth::user()->foto}}"  alt="User Image">
+                                @else 
+                                  <img class="img-circle fotografia"  src="images/logoGym.jpg"  alt="User Image">
+                                @endif
+                                <h5>{!! Auth::user()->fullName !!}</h5>
+                           @endif
+                      </li>
+                      <!-- Menu Body -->
+                      
+                      <!-- Menu Footer-->
+                      <li class="user-footer">
+                        <div class="pull-left">
+                          <a href="{{ url('/persona') }}" class="btn btn-default btn-flat">Perfil</a>
+                        </div>
+                        <div class="pull-right">
+                          <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Logout</a>
+                        </div>
+                      </li>
                     </ul>
-                </li>
-            </ul>
+            </li>
+        </ul> 
+
+           
+           
+            
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -65,7 +89,7 @@
                                     <a href="{{url('admin/view')}}"><i class='fa fa-eye'></i> Ver</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('admin/create')}}"><i class='fa fa-refresh'></i> Actualizar</a>
+                                    <a href="{{url('persona')}}"><i class='fa fa-refresh'></i> Actualizar</a>
                                 </li>
                             </ul>
                         </li>
@@ -154,11 +178,7 @@
      {!!Html::script('js/metisMenu.min.js')!!}
      {!!Html::script('js/sb-admin-2.js')!!}
      {!!Html::script('js/app.min.js')!!}
-
-
      
-
-
 
      @section('script')
      @show
